@@ -1,0 +1,1281 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Makieta poglądowa portalu edukacyjnego o stenozie aortalnej i zabiegu TAVI dla AISN PTK.">
+<title>Makieta portalu TAVI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&display=swap">
+
+<style>
+*{box-sizing:border-box}img{max-width:100%}[hidden]{display:none!important}
+html{color-scheme:light}
+</style>
+</head>
+<body style="margin:0">
+<style>
+/* ============================================================
+   MAKIETA — Portal edukacyjny AISN PTK / stenoza aortalna, TAVI
+   Wariant A ("Senior 70+")  |  Wariant B ("Nowoczesny")
+   ============================================================ */
+
+/* ---- WARIANT A: ciepła klinika, maksymalna czytelność ---- */
+:root{
+  --vscale: 1.25;              /* baza 20 px */
+  --uscale: 1;                 /* regulacja użytkownika */
+
+  --ground:      #FFFDF9;
+  --surface:     #F4EDE3;
+  --surface-2:   #EFE5D7;
+  --ink:         #17120E;
+  --muted:       #4E463D;
+  --brand:       #0E4A52;
+  --brand-soft:  #DCEAEA;
+  --brand-ink:   #0A353B;
+  --accent:      #A8342A;
+  --accent-soft: #F6E3DF;
+  --line:        #D9CCBA;
+  --line-strong: #B7A791;
+  --focus:       #A8342A;
+
+  --radius:   6px;
+  --radius-lg:10px;
+  --border:   2px;
+  --shadow:   none;
+  --shadow-lift: none;
+  --lift: none;
+
+  --font-head: "Source Serif 4", Georgia, "Times New Roman", serif;
+  --font-body: "Source Sans 3", -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  --head-weight: 700;
+  --head-track: 0;
+  --h1: 2.15rem;
+  --h2: 1.75rem;
+  --h3: 1.3rem;
+  --lead: 1.3rem;
+  --lh: 1.7;
+  --section-pad: 4rem;
+  --btn-pad: 1rem 1.75rem;
+}
+
+/* ---- WARIANT B: chłodny, instytucjonalny, bardziej współczesny ---- */
+:root[data-variant="b"]{
+  --vscale: 1.0625;            /* baza 17 px */
+
+  --ground:      #FFFFFF;
+  --surface:     #EFF4F8;
+  --surface-2:   #E3EBF2;
+  --ink:         #0E1A24;
+  --muted:       #4A5C6D;
+  --brand:       #123E6B;
+  --brand-soft:  #E1EBF5;
+  --brand-ink:   #0B2C4D;
+  --accent:      #0F7F82;
+  --accent-soft: #DFF1F1;
+  --line:        #D3DFE9;
+  --line-strong: #B3C5D4;
+  --focus:       #0F7F82;
+
+  --radius:   12px;
+  --radius-lg:18px;
+  --border:   1px;
+  --shadow:   0 1px 2px rgba(14,26,36,.05), 0 8px 24px -14px rgba(14,26,36,.28);
+  --shadow-lift: 0 2px 4px rgba(14,26,36,.06), 0 18px 36px -18px rgba(14,26,36,.35);
+  --lift: translateY(-3px);
+
+  --font-head: "Source Sans 3", -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  --head-weight: 700;
+  --head-track: -0.015em;
+  --h1: 2.7rem;
+  --h2: 1.9rem;
+  --h3: 1.2rem;
+  --lead: 1.2rem;
+  --lh: 1.65;
+  --section-pad: 3.5rem;
+  --btn-pad: .8rem 1.5rem;
+}
+
+*{ box-sizing: border-box; }
+
+:root{ font-size: calc(16px * var(--vscale) * var(--uscale)); }
+
+body{
+  margin: 0;
+  background: var(--ground);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: var(--lh);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,h2,h3,h4{
+  font-family: var(--font-head);
+  font-weight: var(--head-weight);
+  letter-spacing: var(--head-track);
+  line-height: 1.2;
+  text-wrap: balance;
+  margin: 0;
+}
+h1{ font-size: var(--h1); }
+h2{ font-size: var(--h2); }
+h3{ font-size: var(--h3); }
+p{ margin: 0; }
+img, svg{ max-width: 100%; }
+
+a{ color: var(--brand-ink); }
+:root:not([data-variant="b"]) a{ text-underline-offset: 3px; }
+
+:focus-visible{
+  outline: 3px solid var(--focus);
+  outline-offset: 3px;
+  border-radius: 3px;
+}
+
+.wrap{ width: 100%; max-width: 1140px; margin-inline: auto; padding-inline: 20px; }
+.prose{ max-width: 62ch; }
+.stack{ display: flex; flex-direction: column; }
+.gap-s{ gap: .6rem; } .gap-m{ gap: 1.1rem; } .gap-l{ gap: 1.9rem; } .gap-xl{ gap: 3rem; }
+
+/* ============ PASEK MAKIETY (nie jest częścią projektu strony) ============ */
+.mockbar{
+  background: #14181C; color: #F3F5F7;
+  font-family: var(--font-body);
+  font-size: .78rem; line-height: 1.45;
+  border-bottom: 3px solid var(--accent);
+}
+.mockbar .wrap{
+  display: flex; flex-wrap: wrap; align-items: center; gap: .75rem 1.5rem;
+  padding-block: .7rem;
+}
+.mockbar__tag{
+  display: inline-flex; align-items: center; gap: .45rem;
+  font-weight: 700; letter-spacing: .09em; text-transform: uppercase;
+  font-size: .72rem; color: #FFD9A8;
+}
+.mockbar__tag::before{ content:""; width:.5rem; height:.5rem; border-radius:50%; background:#FFD9A8; }
+.mockbar__note{ color: #B9C2CB; max-width: 46ch; }
+.switch{ display: flex; flex-wrap: wrap; gap: .35rem; margin-left: auto; background: #232A31; padding: .3rem; border-radius: 999px; max-width: 100%; }
+.switch button{
+  font: inherit; font-weight: 600; color: #C9D2DA;
+  background: transparent; border: 0; cursor: pointer;
+  padding: .45rem 1rem; border-radius: 999px; white-space: nowrap;
+}
+.switch button[aria-pressed="true"]{ background: #F3F5F7; color: #14181C; }
+
+/* ============ NAGŁÓWEK STRONY ============ */
+.site-head{
+  background: var(--ground);
+  border-bottom: var(--border) solid var(--line);
+  position: sticky; top: 0; z-index: 40;
+}
+:root[data-variant="b"] .site-head{ box-shadow: 0 1px 0 var(--line), 0 6px 20px -18px rgba(14,26,36,.6); }
+
+.brandrow{ display: flex; align-items: center; gap: 1rem; padding-block: .9rem; flex-wrap: wrap; }
+.logo{ display: flex; align-items: center; gap: .7rem; text-decoration: none; color: inherit; }
+.logo__mark{
+  width: 2.6rem; height: 2.6rem; flex: none;
+  border-radius: var(--radius); background: var(--brand);
+  display: grid; place-items: center;
+}
+.logo__mark svg{ width: 1.6rem; height: 1.6rem; display: block; }
+.logo__name{ display: block; font-family: var(--font-head); font-weight: 700; font-size: 1.12rem; line-height: 1.15; }
+.logo__org{ display: block; font-size: .74rem; color: var(--muted); letter-spacing: .04em; text-transform: uppercase; }
+
+.a11y{ margin-left: auto; display: flex; align-items: center; gap: .5rem; }
+.a11y__label{ font-size: .8rem; color: var(--muted); }
+.a11y__btns{ display: flex; gap: .25rem; }
+.a11y__btns button{
+  font-family: var(--font-body); font-weight: 700; cursor: pointer;
+  background: var(--surface); color: var(--ink);
+  border: var(--border) solid var(--line-strong);
+  border-radius: var(--radius); padding: .3rem .7rem; line-height: 1;
+}
+.a11y__btns button[aria-pressed="true"]{ background: var(--brand); color: #fff; border-color: var(--brand); }
+.a11y__btns button:nth-child(1){ font-size: .85rem; }
+.a11y__btns button:nth-child(2){ font-size: 1.05rem; }
+.a11y__btns button:nth-child(3){ font-size: 1.25rem; }
+
+.mainnav{ border-top: var(--border) solid var(--line); }
+.mainnav ul{ list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; }
+.mainnav button{
+  font: inherit; font-size: .94rem; font-weight: 600; cursor: pointer;
+  background: none; border: 0; border-bottom: 4px solid transparent;
+  color: var(--ink); padding: .85rem 1.05rem; display: block;
+}
+.mainnav button:hover{ color: var(--brand-ink); background: var(--surface); }
+.mainnav button[aria-current="page"]{ border-bottom-color: var(--accent); color: var(--brand-ink); }
+
+/* ============ ELEMENTY WSPÓLNE ============ */
+.btn{
+  display: inline-flex; align-items: center; justify-content: center; gap: .55rem;
+  font: inherit; font-weight: 700; text-decoration: none; cursor: pointer;
+  padding: var(--btn-pad); border-radius: var(--radius);
+  border: var(--border) solid transparent;
+  transition: background-color .15s ease, transform .15s ease, box-shadow .15s ease;
+}
+.btn--primary{ background: var(--accent); color: #fff; box-shadow: var(--shadow); }
+.btn--primary:hover{ background: var(--brand); }
+.btn--ghost{ background: var(--ground); color: var(--brand-ink); border-color: var(--line-strong); }
+.btn--ghost:hover{ background: var(--surface); }
+.btn--onbrand{ background: #fff; color: var(--brand-ink); }
+.btn__arrow{ font-size: 1.1em; line-height: 1; }
+
+.eyebrow{
+  font-size: .78rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase;
+  color: var(--brand); font-family: var(--font-body);
+}
+.lead{ font-size: var(--lead); color: var(--muted); }
+
+.section{ padding-block: var(--section-pad); }
+.section--surface{ background: var(--surface); }
+.section--brand{ background: var(--brand); color: #fff; }
+.section--brand .eyebrow, .section--brand .lead{ color: var(--brand-soft); }
+.section__head{ max-width: 60ch; margin-bottom: 2rem; display: flex; flex-direction: column; gap: .7rem; }
+
+.grid{ display: grid; gap: 1.25rem; }
+.grid--3{ grid-template-columns: repeat(auto-fit, minmax(min(100%, 17rem), 1fr)); }
+.grid--2{ grid-template-columns: repeat(auto-fit, minmax(min(100%, 22rem), 1fr)); }
+
+.card{
+  background: var(--ground);
+  border: var(--border) solid var(--line);
+  border-radius: var(--radius-lg);
+  padding: 1.4rem;
+  box-shadow: var(--shadow);
+  display: flex; flex-direction: column; gap: .6rem;
+}
+.section--surface .card{ background: var(--ground); }
+
+.ph{
+  display: inline-flex; align-items: center; gap: .4rem;
+  font-size: .72rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase;
+  color: var(--muted); background: var(--surface-2);
+  border: 1px dashed var(--line-strong); border-radius: 999px;
+  padding: .2rem .65rem;
+}
+
+/* ============ HERO ============ */
+.hero{ background: var(--surface); border-bottom: var(--border) solid var(--line); }
+:root[data-variant="b"] .hero{
+  background: linear-gradient(170deg, #F3F8FC 0%, #E3EBF2 100%);
+}
+.hero__inner{
+  display: grid; gap: 2.5rem; align-items: center;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, .85fr);
+  padding-block: 3.5rem;
+}
+.hero__copy{ display: flex; flex-direction: column; gap: 1.2rem; max-width: 44ch; }
+.hero h1{ font-size: var(--h1); }
+.hero__actions{ display: flex; flex-wrap: wrap; gap: .8rem; }
+.hero__fig{ display: flex; flex-direction: column; gap: .8rem; }
+.hero__fig figcaption{ font-size: .85rem; color: var(--muted); }
+
+.valveset{ display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+.valve{ display: flex; flex-direction: column; align-items: center; gap: .5rem; flex: 1 1 10rem; max-width: 15rem; }
+.valve svg{ width: 100%; height: auto; }
+.valve__name{ font-weight: 700; font-size: .95rem; text-align: center; }
+.valve__name span{ display: block; font-weight: 400; font-size: .8rem; color: var(--muted); }
+
+.factstrip{ background: var(--ground); border-bottom: var(--border) solid var(--line); }
+.factstrip .wrap{ display: grid; gap: 1.5rem; grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr)); padding-block: 2rem; }
+.fact{ display: flex; flex-direction: column; gap: .3rem; border-left: 4px solid var(--accent); padding-left: 1rem; }
+.fact b{ font-family: var(--font-head); font-size: 1.9rem; line-height: 1.1; color: var(--brand-ink); font-variant-numeric: tabular-nums; }
+.fact span{ color: var(--muted); font-size: .95rem; }
+
+/* ============ OBJAWY ============ */
+.symptom{ display: flex; gap: 1rem; align-items: flex-start; }
+.symptom__icon{
+  flex: none; width: 3rem; height: 3rem; border-radius: 50%;
+  background: var(--accent-soft); color: var(--accent);
+  display: grid; place-items: center;
+}
+.symptom__icon svg{ width: 1.6rem; height: 1.6rem; }
+.symptom h3{ margin-bottom: .25rem; }
+.symptom p{ color: var(--muted); font-size: .95rem; }
+
+/* ============ ALERT ============ */
+.alert{
+  border: var(--border) solid var(--accent);
+  border-left-width: 8px;
+  border-radius: var(--radius);
+  background: var(--accent-soft);
+  padding: 1.3rem 1.5rem;
+  display: flex; flex-direction: column; gap: .5rem;
+}
+.alert h3{ color: var(--accent); }
+.alert ul{ margin: 0; padding-left: 1.2rem; }
+.alert li{ margin-block: .25rem; }
+
+/* ============ ŚCIEŻKA PACJENTA ============ */
+.pathway{ counter-reset: step; display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr)); }
+.step{
+  position: relative; padding-top: 3.4rem;
+  border-top: 4px solid var(--brand-soft);
+}
+.step::before{
+  counter-increment: step; content: counter(step);
+  position: absolute; top: 1rem; left: 0;
+  width: 2.1rem; height: 2.1rem; border-radius: 50%;
+  background: var(--brand); color: #fff;
+  font-family: var(--font-head); font-weight: 700; font-size: 1rem;
+  display: grid; place-items: center;
+}
+.step h3{ margin-bottom: .35rem; }
+.step p{ color: var(--muted); font-size: .95rem; }
+
+/* ============ WIDEO / OBRAZ (placeholdery) ============ */
+.media{
+  position: relative; aspect-ratio: 16/9; width: 100%;
+  background: var(--surface-2);
+  border: var(--border) dashed var(--line-strong);
+  border-radius: var(--radius-lg);
+  display: grid; place-items: center; gap: .6rem;
+  align-content: center; text-align: center; padding: 1rem;
+}
+.media__play{
+  width: 3.6rem; height: 3.6rem; border-radius: 50%;
+  background: var(--brand); color: #fff; display: grid; place-items: center;
+}
+.media__play svg{ width: 1.4rem; height: 1.4rem; margin-left: 3px; }
+.media__label{ font-size: .85rem; color: var(--muted); max-width: 26ch; }
+.media--photo{ aspect-ratio: 4/3; }
+
+figure{ margin: 0; display: flex; flex-direction: column; gap: .6rem; }
+figcaption{ font-size: .85rem; color: var(--muted); }
+
+/* ============ FAQ ============ */
+.faq{ display: flex; flex-direction: column; gap: .7rem; max-width: 62ch; }
+.faq details{
+  border: var(--border) solid var(--line);
+  border-radius: var(--radius);
+  background: var(--ground);
+  box-shadow: var(--shadow);
+}
+.faq summary{
+  cursor: pointer; list-style: none;
+  padding: 1rem 1.2rem; font-weight: 700;
+  display: flex; align-items: flex-start; gap: .8rem;
+}
+.faq summary::-webkit-details-marker{ display: none; }
+.faq summary::after{
+  content: "+"; margin-left: auto; flex: none;
+  font-family: var(--font-head); font-size: 1.5rem; line-height: 1;
+  color: var(--brand);
+}
+.faq details[open] summary::after{ content: "–"; }
+.faq details[open] summary{ color: var(--brand-ink); }
+.faq p{ padding: 0 1.2rem 1.2rem; color: var(--muted); max-width: 58ch; }
+
+/* ============ POBIERANIA ============ */
+.dl{ display: flex; flex-direction: row; gap: 1rem; align-items: flex-start; text-decoration: none; color: inherit; }
+.dl__ico{
+  flex: none; width: 3rem; height: 3.6rem; border-radius: var(--radius);
+  background: var(--brand-soft); color: var(--brand-ink);
+  border: var(--border) solid var(--brand);
+  display: grid; place-items: center; font-size: .7rem; font-weight: 700; letter-spacing: .05em;
+}
+.dl b{ display: block; }
+.dl span{ color: var(--muted); font-size: .9rem; }
+
+/* ============ MAPA OŚRODKÓW ============ */
+.finder{ display: grid; gap: 2rem; grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr); align-items: start; }
+.filters{ display: flex; flex-wrap: wrap; gap: 1rem; margin-bottom: 1.5rem; }
+.field{ display: flex; flex-direction: column; gap: .35rem; flex: 1 1 14rem; }
+.field label{ font-weight: 700; font-size: .9rem; }
+.field select, .field input{
+  font: inherit; color: var(--ink); background: var(--ground);
+  border: var(--border) solid var(--line-strong);
+  border-radius: var(--radius); padding: .7rem .8rem; width: 100%;
+}
+.mapbox{
+  background: var(--surface); border: var(--border) solid var(--line);
+  border-radius: var(--radius-lg); padding: 1rem; box-shadow: var(--shadow);
+}
+.mapbox svg{ width: 100%; height: auto; display: block; }
+.pin{ cursor: pointer; }
+.pin circle{ fill: var(--accent); stroke: #fff; stroke-width: 2; transition: r .15s ease; }
+.pin.is-dim circle{ fill: var(--line-strong); }
+.pin.is-active circle{ fill: var(--brand); r: 9; }
+.centers{ list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: .7rem; max-height: 34rem; overflow-y: auto; }
+.center{
+  border: var(--border) solid var(--line); border-radius: var(--radius);
+  padding: .9rem 1.1rem; background: var(--ground);
+  display: flex; flex-direction: column; gap: .2rem;
+}
+.center.is-active{ border-color: var(--brand); background: var(--brand-soft); }
+.center b{ font-size: 1.02rem; }
+.center span{ color: var(--muted); font-size: .9rem; }
+.center a{ font-size: .9rem; font-weight: 600; }
+.count{ font-weight: 700; color: var(--brand-ink); margin-bottom: .8rem; }
+
+/* ============ TABELA PORÓWNAWCZA ============ */
+.tablewrap{ overflow-x: auto; border: var(--border) solid var(--line); border-radius: var(--radius-lg); background: var(--ground); }
+table{ border-collapse: collapse; width: 100%; min-width: 34rem; }
+th, td{ text-align: left; padding: .9rem 1.1rem; border-bottom: 1px solid var(--line); vertical-align: top; font-size: .95rem; }
+thead th{ background: var(--surface); font-family: var(--font-head); font-size: 1rem; }
+tbody th{ font-weight: 700; }
+tbody tr:last-child th, tbody tr:last-child td{ border-bottom: 0; }
+
+/* ============ CTA PASEK ============ */
+.ctabar{ display: flex; flex-wrap: wrap; align-items: center; gap: 1.5rem; justify-content: space-between; }
+.ctabar__copy{ display: flex; flex-direction: column; gap: .5rem; max-width: 46ch; }
+
+/* ============ PODSTRONY: SPIS TREŚCI ============ */
+.pagehead{ background: var(--surface); border-bottom: var(--border) solid var(--line); padding-block: 2.6rem; }
+.pagehead .wrap{ display: flex; flex-direction: column; gap: .8rem; }
+.crumbs{ font-size: .85rem; color: var(--muted); }
+.toc{ display: flex; flex-wrap: wrap; gap: .5rem; margin-top: .6rem; }
+.toc a{
+  font-size: .9rem; font-weight: 600; text-decoration: none;
+  border: var(--border) solid var(--line-strong); border-radius: 999px;
+  padding: .4rem 1rem; background: var(--ground); color: var(--brand-ink);
+}
+.toc a:hover{ background: var(--brand); color: #fff; border-color: var(--brand); }
+
+.split{ display: grid; gap: 2rem; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: start; }
+
+/* ============ STOPKA ============ */
+.site-foot{ background: var(--brand-ink); color: #E7EFEF; padding-block: 2.5rem; }
+:root[data-variant="b"] .site-foot{ background: #0B2C4D; }
+.site-foot a{ color: #fff; }
+.foot-grid{ display: grid; gap: 2rem; grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr)); }
+.site-foot h4{ font-size: 1rem; margin-bottom: .6rem; }
+.site-foot ul{ list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: .4rem; font-size: .9rem; }
+.disclaimer{ margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid rgba(255,255,255,.22); font-size: .85rem; color: #BCD0D0; max-width: 70ch; }
+
+/* ============ RESPONSYWNOŚĆ ============ */
+@media (max-width: 900px){
+  .hero__inner{ grid-template-columns: 1fr; padding-block: 2.5rem; }
+  .finder, .split{ grid-template-columns: 1fr; }
+  .mainnav ul{ flex-direction: column; }
+  .mainnav button{ width: 100%; text-align: left; border-bottom: 1px solid var(--line); border-left: 4px solid transparent; }
+  .mainnav button[aria-current="page"]{ border-left-color: var(--accent); border-bottom-color: var(--line); background: var(--surface); }
+  .site-head{ position: static; }
+  .switch{ margin-left: 0; width: 100%; border-radius: var(--radius); }
+  .switch button{ flex: 1 1 12rem; white-space: normal; }
+}
+@media (prefers-reduced-motion: reduce){
+  *{ transition: none !important; animation: none !important; }
+}
+:root:not([data-variant="b"]) .btn:hover{ transform: none; }
+:root[data-variant="b"] .card{ transition: transform .15s ease, box-shadow .15s ease; }
+:root[data-variant="b"] .btn--primary:hover{ transform: var(--lift); box-shadow: var(--shadow-lift); }
+
+[hidden]{ display: none !important; }
+</style>
+
+<!-- ══════════════════ PASEK MAKIETY ══════════════════ -->
+<div class="mockbar">
+  <div class="wrap">
+    <span class="mockbar__tag">Makieta poglądowa</span>
+    <span class="mockbar__note">Układ i kierunek wizualny. Treści i materiały przykładowe — docelowo dostarcza AISN PTK.</span>
+    <div class="switch" role="group" aria-label="Wariant wizualny">
+      <button type="button" id="var-a" aria-pressed="true">Wariant A · Senior 70+</button>
+      <button type="button" id="var-b" aria-pressed="false">Wariant B · Nowoczesny</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════ NAGŁÓWEK ══════════════════ -->
+<header class="site-head">
+  <div class="wrap brandrow">
+    <a class="logo" href="#" data-go="home">
+      <span class="logo__mark" aria-hidden="true">
+        <svg viewBox="0 0 32 32" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M16 27S4 19.5 4 11.8A6.8 6.8 0 0 1 16 7.6a6.8 6.8 0 0 1 12 4.2C28 19.5 16 27 16 27Z"/>
+          <path d="M6 15.5h5l2-4 3 8 2.5-5 2 3h5.5"/>
+        </svg>
+      </span>
+      <span>
+        <span class="logo__name">Stenoza aortalna i&nbsp;TAVI</span>
+        <span class="logo__org">Portal edukacyjny AISN PTK</span>
+      </span>
+    </a>
+    <div class="a11y">
+      <span class="a11y__label" id="sizelabel">Wielkość tekstu</span>
+      <div class="a11y__btns" role="group" aria-labelledby="sizelabel">
+        <button type="button" data-size="1" aria-pressed="true">A</button>
+        <button type="button" data-size="1.15" aria-pressed="false">A</button>
+        <button type="button" data-size="1.3" aria-pressed="false">A</button>
+      </div>
+    </div>
+  </div>
+  <nav class="mainnav wrap" aria-label="Menu główne">
+    <ul>
+      <li><button type="button" data-go="home" aria-current="page">Strona główna</button></li>
+      <li><button type="button" data-go="wada">Wada zastawki aortalnej</button></li>
+      <li><button type="button" data-go="leczenie">Leczenie i TAVI</button></li>
+      <li><button type="button" data-go="po-tavi">Życie po TAVI</button></li>
+      <li><button type="button" data-go="osrodki">Ośrodki TAVI</button></li>
+      <li><button type="button" data-go="materialy">Dodatkowe informacje</button></li>
+    </ul>
+  </nav>
+</header>
+
+<main id="main">
+
+<!-- ══════════════════ STRONA GŁÓWNA ══════════════════ -->
+<div class="page" id="page-home">
+
+  <section class="hero">
+    <div class="wrap hero__inner">
+      <div class="hero__copy">
+        <span class="eyebrow">Stenoza aortalna</span>
+        <h1>Zwężenie zastawki aortalnej nie cofa się samo. Ale można je skutecznie leczyć.</h1>
+        <p class="lead">Ta strona wyjaśnia — prostym językiem — czym jest stenoza aortalna, jakie daje objawy, na czym polega zabieg TAVI i jak przygotować się do rozmowy z lekarzem.</p>
+        <div class="hero__actions">
+          <button class="btn btn--primary" type="button" data-go="wada">Poznaj objawy <span class="btn__arrow" aria-hidden="true">→</span></button>
+          <button class="btn btn--ghost" type="button" data-go="leczenie">Dowiedz się, czym jest TAVI</button>
+        </div>
+        <p><a href="#" data-go="materialy">Przygotuj się do wizyty — lista pytań do lekarza (PDF)</a></p>
+      </div>
+      <figure class="hero__fig">
+        <div class="valveset">
+          <div class="valve">
+            <svg viewBox="0 0 220 220" role="img" aria-label="Schemat prawidłowej zastawki aortalnej — trzy płatki otwierają się szeroko">
+              <circle cx="110" cy="110" r="103" fill="var(--ground)" stroke="var(--line-strong)" stroke-width="2"/>
+              <circle cx="110" cy="110" r="93" fill="var(--accent-soft)"/>
+              <g fill="var(--brand)" stroke="var(--brand-ink)" stroke-width="2" stroke-linejoin="round">
+                <path d="M33.7,58.6 A92,92 0 0 1 186.3,58.6 Q110.0,25.4 33.7,58.6 Z"/>
+                <path d="M192.7,69.7 A92,92 0 0 1 116.4,201.8 Q183.3,152.3 192.7,69.7 Z"/>
+                <path d="M103.6,201.8 A92,92 0 0 1 27.3,69.7 Q36.7,152.3 103.6,201.8 Z"/>
+              </g>
+            </svg>
+            <span class="valve__name">Zastawka prawidłowa<span>szerokie ujście, krew płynie swobodnie</span></span>
+          </div>
+          <div class="valve">
+            <svg viewBox="0 0 220 220" role="img" aria-label="Schemat zwężonej zastawki aortalnej — pogrubione, zwapniałe płatki i wąskie ujście">
+              <circle cx="110" cy="110" r="103" fill="var(--ground)" stroke="var(--line-strong)" stroke-width="2"/>
+              <circle cx="110" cy="110" r="93" fill="var(--accent-soft)"/>
+              <g fill="var(--brand)" stroke="var(--brand-ink)" stroke-width="2" stroke-linejoin="round">
+                <path d="M33.7,58.6 A92,92 0 0 1 186.3,58.6 Q110.0,105.4 33.7,58.6 Z"/>
+                <path d="M192.7,69.7 A92,92 0 0 1 116.4,201.8 Q114.0,112.3 192.7,69.7 Z"/>
+                <path d="M103.6,201.8 A92,92 0 0 1 27.3,69.7 Q106.0,112.3 103.6,201.8 Z"/>
+              </g>
+              <g fill="var(--accent)" opacity=".95">
+                <circle cx="83.2" cy="59.6" r="7"/><circle cx="110" cy="43.8" r="9"/><circle cx="134.2" cy="60.4" r="6"/>
+                <circle cx="167" cy="112" r="7"/><circle cx="167.4" cy="143.1" r="9"/><circle cx="140.9" cy="155.8" r="6"/>
+                <circle cx="79.8" cy="158.4" r="7"/><circle cx="52.6" cy="143.1" r="9"/><circle cx="54.9" cy="113.9" r="6"/>
+              </g>
+            </svg>
+            <span class="valve__name">Zastawka zwężona<span>zwapnienia, wąskie ujście, serce pracuje ciężej</span></span>
+          </div>
+        </div>
+        <figcaption>Ilustracja poglądowa. Docelowo: autorskie ilustracje lub animacja medyczna od AISN PTK.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <div class="factstrip">
+    <div class="wrap">
+      <div class="fact"><b>3–5%</b><span>osób po 75. roku życia ma ciężką stenozę aortalną <em>(dane przykładowe do potwierdzenia)</em></span></div>
+      <div class="fact"><b>2 lata</b><span>tyle potrafi wynosić rokowanie w ciężkiej, objawowej i nieleczonej stenozie <em>(dane przykładowe)</em></span></div>
+      <div class="fact"><b>2–5 dni</b><span>typowy pobyt w szpitalu przy zabiegu TAVI <em>(dane przykładowe)</em></span></div>
+    </div>
+  </div>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="section__head">
+        <span class="eyebrow">Czym jest stenoza aortalna</span>
+        <h2>Zastawka aortalna przestaje się otwierać tak szeroko, jak powinna</h2>
+        <p class="lead">Zastawka aortalna to „drzwi”, przez które krew wypływa z serca do całego ciała. Z wiekiem jej płatki mogą twardnieć i wapnieć. Ujście się zwęża, a serce musi pracować dużo mocniej, żeby przepchnąć przez nie krew.</p>
+      </div>
+      <div class="grid grid--3">
+        <div class="card">
+          <h3>Choroba postępuje powoli</h3>
+          <p>Przez wiele lat może nie dawać żadnych objawów. Bywa wykrywana przypadkiem — gdy lekarz usłyszy szmer nad sercem.</p>
+        </div>
+        <div class="card">
+          <h3>Objawy oznaczają zmianę</h3>
+          <p>Zadyszka, omdlenia czy ból w klatce piersiowej to sygnał, że zwężenie jest już zaawansowane i wymaga pilnej oceny kardiologa.</p>
+        </div>
+        <div class="card">
+          <h3>Leki nie usuwają zwężenia</h3>
+          <p>Nie ma leku, który odblokowałby zastawkę. Jedynym skutecznym leczeniem jest jej wymiana — chirurgiczna lub metodą TAVI.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--surface">
+    <div class="wrap">
+      <div class="section__head">
+        <span class="eyebrow">Objawy</span>
+        <h2>Sygnały, których nie należy tłumaczyć samym wiekiem</h2>
+        <p class="lead">Wiele osób uznaje te objawy za naturalny efekt starzenia się. Jeśli pojawiają się u Ciebie lub u Twojego bliskiego, warto porozmawiać z lekarzem.</p>
+      </div>
+      <div class="grid grid--3">
+        <div class="symptom">
+          <span class="symptom__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 3v9"/><path d="M12 12c0 5-2.5 8-5.5 8S3 17.5 3 14s2-4 4-4"/><path d="M12 12c0 5 2.5 8 5.5 8s3.5-2.5 3.5-6-2-4-4-4"/></svg></span>
+          <div><h3>Duszność i zadyszka</h3><p>Przy czynnościach, które wcześniej nie sprawiały trudności — wejście po schodach, spacer, zakupy.</p></div>
+        </div>
+        <div class="symptom">
+          <span class="symptom__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 6.6A5 5 0 0 0 12 8a5 5 0 0 0-8.8-1.4"/><path d="M3.2 6.6C1.5 10.2 5 15 12 20c7-5 10.5-9.8 8.8-13.4"/><path d="M7 12h3l1.5-3 2 6 1.5-3h3"/></svg></span>
+          <div><h3>Ból lub ucisk w klatce piersiowej</h3><p>Uczucie ciężaru, ucisku lub pieczenia, najczęściej w czasie wysiłku, ustępujące po odpoczynku.</p></div>
+        </div>
+        <div class="symptom">
+          <span class="symptom__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M5 5l1.5 1.5M17.5 17.5 19 19M19 5l-1.5 1.5M6.5 17.5 5 19"/></svg></span>
+          <div><h3>Zawroty głowy i omdlenia</h3><p>Zasłabnięcia, „ciemno przed oczami”, szczególnie przy wstawaniu lub podczas wysiłku.</p></div>
+        </div>
+        <div class="symptom">
+          <span class="symptom__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h4l2-5 3 10 2.5-7 1.5 4h5"/></svg></span>
+          <div><h3>Kołatanie i nierówna praca serca</h3><p>Uczucie „trzepotania” w klatce piersiowej lub przyspieszonego, niemiarowego bicia serca.</p></div>
+        </div>
+        <div class="symptom">
+          <span class="symptom__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 3a9 9 0 1 0 9 9"/><path d="M12 7v5l3.5 2"/></svg></span>
+          <div><h3>Męczliwość i osłabienie</h3><p>Szybkie męczenie się, brak siły na codzienne zajęcia, potrzeba częstych przerw i odpoczynku.</p></div>
+        </div>
+        <div class="symptom">
+          <span class="symptom__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3v7c0 3-3 4-3 7a7 7 0 0 0 14 0c0-3-3-4-3-7V3Z"/><path d="M8 8h8"/></svg></span>
+          <div><h3>Obrzęki nóg i kostek</h3><p>Opuchlizna nasilająca się wieczorem, ciasne obuwie, ślad po skarpetce na łydce.</p></div>
+        </div>
+      </div>
+      <div style="margin-top:2rem" class="alert">
+        <h3>Kiedy skontaktować się z lekarzem pilnie</h3>
+        <ul>
+          <li>Utrata przytomności lub zasłabnięcie.</li>
+          <li>Silny, długo utrzymujący się ból w klatce piersiowej.</li>
+          <li>Duszność w spoczynku lub w nocy, uniemożliwiająca leżenie płasko.</li>
+        </ul>
+        <p><strong>W sytuacji nagłej dzwoń pod numer 112.</strong></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap split">
+      <div class="stack gap-m">
+        <span class="eyebrow">Historia pacjenta</span>
+        <h2>„Myślałem, że po prostu się starzeję”</h2>
+        <p>Film wprowadzający: pacjent opowiada o objawach, diagnozie i o tym, jak wyglądał jego zabieg TAVI oraz powrót do codziennych zajęć.</p>
+        <p><span class="ph">materiał wideo od AISN PTK</span></p>
+        <p><button class="btn btn--ghost" type="button" data-go="po-tavi">Zobacz, jak wygląda życie po TAVI</button></p>
+      </div>
+      <div class="media">
+        <span class="media__play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
+        <span class="media__label">Film wprowadzający / historia pacjenta — miejsce na materiał wideo (osadzenie YouTube lub Vimeo)</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--surface">
+    <div class="wrap">
+      <div class="section__head">
+        <span class="eyebrow">Ścieżka pacjenta</span>
+        <h2>Od pierwszej wizyty do powrotu do domu</h2>
+      </div>
+      <div class="pathway">
+        <div class="step"><h3>Rozpoznanie</h3><p>Lekarz słyszy szmer nad sercem i kieruje na badanie echokardiograficzne (echo serca).</p></div>
+        <div class="step"><h3>Kwalifikacja</h3><p>Zespół specjalistów — kardiogrupa — ocenia wyniki i wspólnie z pacjentem wybiera metodę leczenia.</p></div>
+        <div class="step"><h3>Zabieg</h3><p>Nowa zastawka jest wprowadzana cewnikiem, najczęściej przez tętnicę udową, bez otwierania klatki piersiowej.</p></div>
+        <div class="step"><h3>Powrót do zdrowia</h3><p>Krótki pobyt w szpitalu, wizyty kontrolne i stopniowy powrót do codziennej aktywności.</p></div>
+      </div>
+      <p style="margin-top:1.5rem"><button class="btn btn--primary" type="button" data-go="leczenie">Zobacz pełną ścieżkę pacjenta <span class="btn__arrow" aria-hidden="true">→</span></button></p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap split">
+      <div>
+        <div class="section__head">
+          <span class="eyebrow">Najczęstsze pytania</span>
+          <h2>Pytania, które zadają pacjenci i ich rodziny</h2>
+        </div>
+        <div class="faq">
+          <details open>
+            <summary>Czy stenoza aortalna może się cofnąć?</summary>
+            <p>Nie. Zwężenie zastawki nie ustępuje samoistnie i nie da się go usunąć lekami. Leki mogą łagodzić objawy i leczyć choroby towarzyszące, ale nie zatrzymują postępu choroby.</p>
+          </details>
+          <details>
+            <summary>Czy zabieg TAVI jest bolesny?</summary>
+            <p>Zabieg wykonuje się najczęściej w znieczuleniu miejscowym, w warunkach zapewniających komfort pacjenta. Szczegóły dotyczące znieczulenia ustala zespół leczący.</p>
+          </details>
+          <details>
+            <summary>Ile trwa pobyt w szpitalu?</summary>
+            <p>Zwykle kilka dni. Dokładny czas zależy od stanu zdrowia, przebiegu zabiegu i decyzji lekarza prowadzącego.</p>
+          </details>
+          <details>
+            <summary>Kto decyduje o wyborze metody leczenia?</summary>
+            <p>Decyzję podejmuje kardiogrupa — zespół kardiologa, kardiochirurga i innych specjalistów — wspólnie z pacjentem, po ocenie wyników badań i chorób towarzyszących.</p>
+          </details>
+          <details>
+            <summary>Czy po zabiegu wrócę do normalnej aktywności?</summary>
+            <p>Większość pacjentów stopniowo wraca do codziennych zajęć. Zakres i tempo aktywności ustala lekarz podczas wizyt kontrolnych.</p>
+          </details>
+        </div>
+        <p style="margin-top:1rem"><span class="ph">treść merytoryczna od AISN PTK</span></p>
+      </div>
+
+      <div>
+        <div class="section__head">
+          <span class="eyebrow">Do pobrania</span>
+          <h2>Materiały edukacyjne</h2>
+        </div>
+        <div class="stack gap-m">
+          <a class="dl" href="#" data-go="materialy">
+            <span class="dl__ico" aria-hidden="true">PDF</span>
+            <span><b>Lista pytań do lekarza</b><span>Wydrukuj i zabierz na wizytę · 2 strony</span></span>
+          </a>
+          <a class="dl" href="#" data-go="materialy">
+            <span class="dl__ico" aria-hidden="true">PDF</span>
+            <span><b>Stenoza aortalna — broszura dla pacjenta</b><span>Podstawowe informacje o chorobie · 12 stron</span></span>
+          </a>
+          <a class="dl" href="#" data-go="materialy">
+            <span class="dl__ico" aria-hidden="true">PDF</span>
+            <span><b>Dzienniczek objawów</b><span>Zapisuj samopoczucie między wizytami · 4 strony</span></span>
+          </a>
+        </div>
+        <p style="margin-top:1.2rem"><span class="ph">pliki dostarcza AISN PTK</span></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--brand">
+    <div class="wrap ctabar">
+      <div class="ctabar__copy">
+        <span class="eyebrow">Ośrodki TAVI</span>
+        <h2>Sprawdź, gdzie w Polsce wykonuje się zabiegi TAVI</h2>
+        <p class="lead">Wyszukaj ośrodek według województwa lub miasta i zabierz dane kontaktowe na wizytę u lekarza.</p>
+      </div>
+      <button class="btn btn--onbrand" type="button" data-go="osrodki">Znajdź ośrodek <span class="btn__arrow" aria-hidden="true">→</span></button>
+    </div>
+  </section>
+</div>
+
+<!-- ══════════════════ WADA ZASTAWKI AORTALNEJ ══════════════════ -->
+<div class="page" id="page-wada" hidden>
+  <div class="pagehead">
+    <div class="wrap">
+      <p class="crumbs">Strona główna › Wada zastawki aortalnej</p>
+      <h1>Wada zastawki aortalnej</h1>
+      <p class="lead">Jak pracuje serce, jaką rolę pełni zastawka aortalna i co się dzieje, gdy się zwęża.</p>
+      <div class="toc">
+        <a href="#serce">Jak działa serce i zastawki</a>
+        <a href="#rola">Rola zastawki aortalnej</a>
+        <a href="#porownanie">Zastawka prawidłowa a zwężona</a>
+        <a href="#objawy-rokowanie">Objawy i rokowanie</a>
+      </div>
+    </div>
+  </div>
+
+  <section class="section" id="serce">
+    <div class="wrap split">
+      <div class="stack gap-m prose">
+        <span class="eyebrow">Podstawy</span>
+        <h2>Jak działa serce i zastawki serca</h2>
+        <p>Serce jest pompą, która tłoczy krew do całego organizmu. Ma cztery jamy i cztery zastawki. Zastawki działają jak jednokierunkowe drzwi: otwierają się, żeby przepuścić krew, i zamykają, żeby nie cofała się z powrotem.</p>
+        <p>Prawidłowa praca zastawek sprawia, że krew płynie zawsze w jednym kierunku, a serce nie musi wykonywać dodatkowej pracy.</p>
+        <p><span class="ph">treść i ilustracje od AISN PTK</span></p>
+      </div>
+      <figure>
+        <div class="media media--photo">
+          <span class="media__label">Ilustracja medyczna lub krótka animacja: budowa serca i przepływ krwi</span>
+        </div>
+        <figcaption>Miejsce na autorską ilustrację lub animację dostarczoną przez AISN PTK.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="section section--surface" id="rola">
+    <div class="wrap">
+      <div class="section__head">
+        <span class="eyebrow">Zastawka aortalna</span>
+        <h2>Rola zastawki aortalnej</h2>
+        <p class="lead">To ostatnia „bramka” na drodze krwi z serca do aorty — głównej tętnicy ciała. Otwiera się i zamyka około 100 000 razy na dobę.</p>
+      </div>
+      <div class="grid grid--3">
+        <div class="card"><h3>Otwarcie</h3><p>Lewa komora kurczy się, płatki zastawki rozchylają się, a krew wypływa do aorty i dalej do całego organizmu.</p></div>
+        <div class="card"><h3>Zamknięcie</h3><p>Po skurczu płatki szczelnie się schodzą, dzięki czemu krew nie cofa się do serca.</p></div>
+        <div class="card"><h3>Zwężenie</h3><p>Gdy płatki twardnieją i wapnieją, ujście staje się mniejsze. Serce musi wytworzyć znacznie wyższe ciśnienie, żeby przepchnąć krew.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="porownanie">
+    <div class="wrap">
+      <div class="section__head">
+        <span class="eyebrow">Porównanie</span>
+        <h2>Zastawka prawidłowa a zastawka zwężona</h2>
+      </div>
+      <div class="valveset" style="max-width:44rem">
+        <div class="valve">
+          <svg viewBox="0 0 220 220" role="img" aria-label="Prawidłowa zastawka aortalna widziana od góry">
+            <circle cx="110" cy="110" r="103" fill="var(--ground)" stroke="var(--line-strong)" stroke-width="2"/>
+            <circle cx="110" cy="110" r="93" fill="var(--accent-soft)"/>
+            <g fill="var(--brand)" stroke="var(--brand-ink)" stroke-width="2" stroke-linejoin="round">
+              <path d="M33.7,58.6 A92,92 0 0 1 186.3,58.6 Q110.0,25.4 33.7,58.6 Z"/>
+              <path d="M192.7,69.7 A92,92 0 0 1 116.4,201.8 Q183.3,152.3 192.7,69.7 Z"/>
+              <path d="M103.6,201.8 A92,92 0 0 1 27.3,69.7 Q36.7,152.3 103.6,201.8 Z"/>
+            </g>
+          </svg>
+          <span class="valve__name">Prawidłowa<span>trzy elastyczne płatki, szerokie ujście</span></span>
+        </div>
+        <div class="valve">
+          <svg viewBox="0 0 220 220" role="img" aria-label="Zwężona zastawka aortalna ze zwapnieniami">
+            <circle cx="110" cy="110" r="103" fill="var(--ground)" stroke="var(--line-strong)" stroke-width="2"/>
+            <circle cx="110" cy="110" r="93" fill="var(--accent-soft)"/>
+            <g fill="var(--brand)" stroke="var(--brand-ink)" stroke-width="2" stroke-linejoin="round">
+              <path d="M33.7,58.6 A92,92 0 0 1 186.3,58.6 Q110.0,105.4 33.7,58.6 Z"/>
+              <path d="M192.7,69.7 A92,92 0 0 1 116.4,201.8 Q114.0,112.3 192.7,69.7 Z"/>
+              <path d="M103.6,201.8 A92,92 0 0 1 27.3,69.7 Q106.0,112.3 103.6,201.8 Z"/>
+            </g>
+            <g fill="var(--accent)">
+              <circle cx="83.2" cy="59.6" r="7"/><circle cx="110" cy="43.8" r="9"/><circle cx="134.2" cy="60.4" r="6"/>
+              <circle cx="167" cy="112" r="7"/><circle cx="167.4" cy="143.1" r="9"/><circle cx="140.9" cy="155.8" r="6"/>
+              <circle cx="79.8" cy="158.4" r="7"/><circle cx="52.6" cy="143.1" r="9"/><circle cx="54.9" cy="113.9" r="6"/>
+            </g>
+          </svg>
+          <span class="valve__name">Zwężona (stenoza)<span>pogrubione, zwapniałe płatki i wąskie ujście</span></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--surface" id="objawy-rokowanie">
+    <div class="wrap">
+      <div class="section__head">
+        <span class="eyebrow">Objawy i rokowanie</span>
+        <h2>Co się dzieje, gdy stenoza nie jest leczona</h2>
+        <p class="lead">Serce przez lata radzi sobie ze zwężeniem, pogrubiając swoją ścianę. W pewnym momencie przestaje to wystarczać — i wtedy pojawiają się objawy.</p>
+      </div>
+      <div class="grid grid--2">
+        <div class="stack gap-m prose">
+          <h3>Przebieg choroby</h3>
+          <p>Okres bezobjawowy może trwać wiele lat. Pojawienie się duszności, bólu w klatce piersiowej lub omdleń oznacza, że choroba weszła w fazę, w której rokowanie bez leczenia znacząco się pogarsza.</p>
+          <p>Nieleczona ciężka stenoza aortalna prowadzi do niewydolności serca, hospitalizacji i zwiększa ryzyko zgonu.</p>
+          <p><span class="ph">dane i wykresy od AISN PTK</span></p>
+        </div>
+        <div class="stack gap-m">
+          <div class="media"><span class="media__play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span><span class="media__label">Film: pacjent z ciężką stenozą aortalną</span></div>
+          <div class="media"><span class="media__play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span><span class="media__label">Film: lekarz o ciężkiej stenozie aortalnej</span></div>
+        </div>
+      </div>
+      <div class="alert" style="margin-top:2rem">
+        <h3>Skontaktuj się z lekarzem pilnie, jeśli wystąpi</h3>
+        <ul>
+          <li>omdlenie lub zasłabnięcie,</li>
+          <li>silny ból w klatce piersiowej,</li>
+          <li>nasilona duszność w spoczynku.</li>
+        </ul>
+        <p><strong>W sytuacji zagrożenia życia dzwoń pod numer 112.</strong></p>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ══════════════════ LECZENIE I TAVI ══════════════════ -->
+<div class="page" id="page-leczenie" hidden>
+  <div class="pagehead">
+    <div class="wrap">
+      <p class="crumbs">Strona główna › Leczenie i TAVI</p>
+      <h1>Leczenie i zabieg TAVI</h1>
+      <p class="lead">Jakie są metody leczenia stenozy aortalnej, na czym polega TAVI i jak wygląda cała ścieżka pacjenta.</p>
+      <div class="toc">
+        <a href="#pacjent">Perspektywa pacjenta</a>
+        <a href="#lekarz">Perspektywa lekarza</a>
+        <a href="#porownanie-metod">Porównanie metod</a>
+        <a href="#sciezka">Ścieżka pacjenta</a>
+      </div>
+    </div>
+  </div>
+
+  <section class="section" id="pacjent">
+    <div class="wrap split">
+      <div class="stack gap-m prose">
+        <span class="eyebrow">Perspektywa pacjenta</span>
+        <h2>Czym jest TAVI</h2>
+        <p>TAVI (przezcewnikowa implantacja zastawki aortalnej) to zabieg, w którym nowa zastawka jest wprowadzana do serca przez cewnik — najczęściej przez tętnicę w pachwinie — bez otwierania klatki piersiowej i bez zatrzymywania pracy serca.</p>
+        <p>Nowa zastawka rozpręża się w miejscu starej, zwężonej, i od razu przejmuje jej pracę. Dla wielu pacjentów oznacza to krótszy pobyt w szpitalu i szybszy powrót do codziennych zajęć niż po operacji kardiochirurgicznej.</p>
+        <p><span class="ph">treść od AISN PTK</span></p>
+      </div>
+      <div class="stack gap-m">
+        <div class="media"><span class="media__play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span><span class="media__label">Film: leczenie z perspektywy pacjenta</span></div>
+        <div class="grid grid--3" style="gap:.8rem">
+          <div class="media media--photo"><span class="media__label">Zdjęcie 1</span></div>
+          <div class="media media--photo"><span class="media__label">Zdjęcie 2</span></div>
+          <div class="media media--photo"><span class="media__label">Zdjęcie 3</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--surface" id="lekarz">
+    <div class="wrap split">
+      <div class="stack gap-m">
+        <div class="media"><span class="media__play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span><span class="media__label">Film: procedura z perspektywy lekarza</span></div>
+        <div class="grid grid--3" style="gap:.8rem">
+          <div class="media media--photo"><span class="media__label">Zdjęcie 1</span></div>
+          <div class="media media--photo"><span class="media__label">Zdjęcie 2</span></div>
+          <div class="media media--photo"><span class="media__label">Zdjęcie 3</span></div>
+        </div>
+      </div>
+      <div class="stack gap-m prose">
+        <span class="eyebrow">Perspektywa lekarza</span>
+        <h2>Jak przebiega zabieg</h2>
+        <p>Zabieg wykonuje zespół w pracowni hemodynamicznej lub na sali hybrydowej, pod kontrolą obrazowania. Dostęp uzyskuje się najczęściej przez tętnicę udową.</p>
+        <p>Kwalifikacja opiera się na badaniu echokardiograficznym, tomografii komputerowej oraz ocenie chorób współistniejących. Decyzję podejmuje kardiogrupa.</p>
+        <p><span class="ph">treść od AISN PTK</span></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="porownanie-metod">
+    <div class="wrap">
+      <div class="section__head">
+        <span class="eyebrow">Metody leczenia</span>
+        <h2>Porównanie dostępnych opcji</h2>
+        <p class="lead">O wyborze metody decyduje kardiogrupa wspólnie z pacjentem. Poniższe zestawienie ma charakter poglądowy.</p>
+      </div>
+      <div class="tablewrap">
+        <table>
+          <thead>
+            <tr><th scope="col">Metoda</th><th scope="col">Na czym polega</th><th scope="col">Dla kogo</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">Leczenie zachowawcze</th>
+              <td>Leki łagodzące objawy i leczenie chorób towarzyszących. Nie usuwa zwężenia zastawki.</td>
+              <td>Postępowanie wspomagające; nie zastępuje wymiany zastawki.</td>
+            </tr>
+            <tr>
+              <th scope="row">Operacja kardiochirurgiczna (SAVR)</th>
+              <td>Wymiana zastawki podczas operacji z otwarciem klatki piersiowej, w krążeniu pozaustrojowym.</td>
+              <td>Pacjenci kwalifikowani do leczenia operacyjnego przez kardiogrupę.</td>
+            </tr>
+            <tr>
+              <th scope="row">TAVI</th>
+              <td>Wprowadzenie nowej zastawki cewnikiem, bez otwierania klatki piersiowej.</td>
+              <td>Pacjenci zakwalifikowani do leczenia przezcewnikowego przez kardiogrupę.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="margin-top:1rem"><span class="ph">zakres i treść tabeli do potwierdzenia przez AISN PTK</span></p>
+    </div>
+  </section>
+
+  <section class="section section--surface" id="sciezka">
+    <div class="wrap">
+      <div class="section__head">
+        <span class="eyebrow">Ścieżka pacjenta</span>
+        <h2>Krok po kroku — od skierowania do kontroli po zabiegu</h2>
+      </div>
+      <div class="pathway">
+        <div class="step"><h3>Skierowanie i badania</h3><p>Echo serca, tomografia komputerowa, badania krwi oraz ocena chorób współistniejących.</p></div>
+        <div class="step"><h3>Kwalifikacja</h3><p>Kardiogrupa analizuje wyniki i przedstawia pacjentowi rekomendowaną metodę leczenia.</p></div>
+        <div class="step"><h3>Przygotowanie</h3><p>Ustalenie terminu, informacje o lekach, przyjęcie do szpitala i ostatnie badania.</p></div>
+        <div class="step"><h3>Zabieg</h3><p>Implantacja nowej zastawki i obserwacja w pierwszej dobie po zabiegu.</p></div>
+        <div class="step"><h3>Rekonwalescencja</h3><p>Wypis, zalecenia, wizyty kontrolne i stopniowy powrót do aktywności.</p></div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ══════════════════ ŻYCIE PO TAVI ══════════════════ -->
+<div class="page" id="page-po-tavi" hidden>
+  <div class="pagehead">
+    <div class="wrap">
+      <p class="crumbs">Strona główna › Życie po TAVI</p>
+      <h1>Życie po TAVI</h1>
+      <p class="lead">Powrót do domu, dalsza opieka, kontrole i codzienna aktywność po wszczepieniu zastawki.</p>
+    </div>
+  </div>
+
+  <section class="section">
+    <div class="wrap grid grid--2">
+      <figure>
+        <div class="media"><span class="media__play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span><span class="media__label">Film: lekarz o opiece po zabiegu</span></div>
+        <figcaption>Materiał wideo dostarczony przez AISN PTK.</figcaption>
+      </figure>
+      <figure>
+        <div class="media"><span class="media__play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span><span class="media__label">Film: pacjent po zabiegu TAVI</span></div>
+        <figcaption>Materiał wideo dostarczony przez AISN PTK.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="section section--surface">
+    <div class="wrap">
+      <div class="section__head">
+        <span class="eyebrow">Dalsza opieka</span>
+        <h2>O czym pamiętać po powrocie do domu</h2>
+      </div>
+      <div class="grid grid--3">
+        <div class="card"><h3>Wizyty kontrolne</h3><p>Terminy kontroli i badań ustala ośrodek, w którym wykonano zabieg. Warto zapisać je od razu po wypisie.</p></div>
+        <div class="card"><h3>Leki</h3><p>Przyjmuj leki dokładnie tak, jak zapisał lekarz. Nie odstawiaj ich samodzielnie i nie zmieniaj dawek.</p></div>
+        <div class="card"><h3>Rana po nakłuciu</h3><p>Obserwuj miejsce wkłucia. Zaczerwienienie, obrzęk lub krwawienie zgłoś lekarzowi.</p></div>
+        <div class="card"><h3>Aktywność</h3><p>Wracaj do codziennych zajęć stopniowo, zgodnie z zaleceniami. Regularny, umiarkowany ruch zwykle służy sercu.</p></div>
+        <div class="card"><h3>Rehabilitacja</h3><p>Zapytaj o możliwość rehabilitacji kardiologicznej — pomaga bezpiecznie odbudować kondycję.</p></div>
+        <div class="card"><h3>Wizyty u dentysty</h3><p>Poinformuj każdego lekarza i stomatologa o wszczepionej zastawce przed planowanymi zabiegami.</p></div>
+      </div>
+      <div class="alert" style="margin-top:2rem">
+        <h3>Skontaktuj się z lekarzem, jeśli po zabiegu wystąpi</h3>
+        <ul>
+          <li>gorączka, dreszcze lub złe samopoczucie,</li>
+          <li>narastająca duszność albo obrzęki,</li>
+          <li>omdlenie, kołatanie serca lub ból w klatce piersiowej,</li>
+          <li>krwawienie lub obrzęk w miejscu wkłucia.</li>
+        </ul>
+      </div>
+      <p style="margin-top:1.2rem"><span class="ph">treść merytoryczna od AISN PTK</span></p>
+    </div>
+  </section>
+</div>
+
+<!-- ══════════════════ OŚRODKI TAVI ══════════════════ -->
+<div class="page" id="page-osrodki" hidden>
+  <div class="pagehead">
+    <div class="wrap">
+      <p class="crumbs">Strona główna › Ośrodki TAVI</p>
+      <h1>Ośrodki wykonujące zabiegi TAVI</h1>
+      <p class="lead">Wybierz województwo lub wpisz nazwę miasta, aby zobaczyć ośrodki w Twojej okolicy.</p>
+    </div>
+  </div>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="filters">
+        <div class="field">
+          <label for="woj">Województwo</label>
+          <select id="woj">
+            <option value="">Wszystkie województwa</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="miasto">Miasto lub nazwa ośrodka</label>
+          <input id="miasto" type="search" placeholder="np. Kraków" autocomplete="off">
+        </div>
+      </div>
+
+      <div class="finder">
+        <div class="mapbox">
+          <svg id="mapa" viewBox="0 0 580 540" role="img" aria-label="Mapa Polski z zaznaczonymi ośrodkami TAVI">
+            <path d="M11.0,90.8 L52.2,68.5 L118.2,59.6 L173.2,22.2 L236.5,15.1 L258.5,47.2 L291.5,50.7 L308.0,45.4 L360.3,49.0 L415.3,54.3 L481.2,50.7 L495.0,84.6 L519.8,89.0 L542.9,157.5 L525.2,209.2 L503.2,237.6 L526.4,262.6 L525.2,305.3 L531.8,360.5 L553.9,364.0 L530.7,405.0 L503.2,403.2 L475.7,476.2 L470.3,522.4 L440.0,510.0 L409.7,492.2 L376.7,502.9 L332.8,511.8 L316.2,510.0 L295.4,476.2 L266.7,485.1 L249.1,447.7 L220.0,447.7 L200.7,413.9 L162.2,421.0 L141.4,431.7 L156.7,403.2 L118.2,403.2 L74.2,369.4 L53.3,349.8 L42.3,362.2 L36.8,324.9 L31.3,262.6 L3.8,189.6 L19.2,154.0 L13.8,109.5 Z"
+                  fill="var(--brand-soft)" stroke="var(--brand)" stroke-width="2.5" stroke-linejoin="round"/>
+            <g id="piny"></g>
+          </svg>
+          <p style="margin-top:.8rem;font-size:.85rem;color:var(--muted)">Makieta modułu. W wersji docelowej: mapa interaktywna (piny, przybliżanie) na bazie danych ośrodków od AISN PTK.</p>
+        </div>
+
+        <div>
+          <p class="count" id="licznik">Wyświetlane ośrodki: 16</p>
+          <ul class="centers" id="lista"></ul>
+          <p style="margin-top:1rem"><span class="ph">dane przykładowe — lista i dane kontaktowe od AISN PTK</span></p>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ══════════════════ DODATKOWE INFORMACJE ══════════════════ -->
+<div class="page" id="page-materialy" hidden>
+  <div class="pagehead">
+    <div class="wrap">
+      <p class="crumbs">Strona główna › Dodatkowe informacje</p>
+      <h1>Dodatkowe informacje</h1>
+      <p class="lead">Materiały do pobrania oraz odnośniki do sprawdzonych źródeł.</p>
+    </div>
+  </div>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="section__head">
+        <span class="eyebrow">Do pobrania</span>
+        <h2>Broszury i materiały PDF</h2>
+      </div>
+      <div class="grid grid--2">
+        <a class="dl card" href="#"><span class="dl__ico" aria-hidden="true">PDF</span><span><b>Lista pytań do lekarza</b><span>Wydrukuj i zabierz na wizytę · 2 strony · 0,4 MB</span></span></a>
+        <a class="dl card" href="#"><span class="dl__ico" aria-hidden="true">PDF</span><span><b>Stenoza aortalna — broszura dla pacjenta</b><span>Podstawowe informacje · 12 stron · 1,8 MB</span></span></a>
+        <a class="dl card" href="#"><span class="dl__ico" aria-hidden="true">PDF</span><span><b>Dzienniczek objawów</b><span>Do wypełnienia między wizytami · 4 strony · 0,6 MB</span></span></a>
+        <a class="dl card" href="#"><span class="dl__ico" aria-hidden="true">PDF</span><span><b>Przygotowanie do zabiegu TAVI</b><span>Informacje praktyczne · 8 stron · 1,1 MB</span></span></a>
+        <a class="dl card" href="#"><span class="dl__ico" aria-hidden="true">PDF</span><span><b>Po zabiegu — zalecenia dla pacjenta</b><span>Dalsza opieka · 6 stron · 0,9 MB</span></span></a>
+        <a class="dl card" href="#"><span class="dl__ico" aria-hidden="true">PDF</span><span><b>Informacje dla rodziny i opiekunów</b><span>Wsparcie bliskich · 6 stron · 0,8 MB</span></span></a>
+      </div>
+      <p style="margin-top:1.2rem"><span class="ph">sekcja zarządzana przez CMS — nowe pliki dodawane w ramach opieki technicznej</span></p>
+    </div>
+  </section>
+
+  <section class="section section--surface">
+    <div class="wrap">
+      <div class="section__head">
+        <span class="eyebrow">Odnośniki</span>
+        <h2>Wiarygodne źródła informacji</h2>
+        <p class="lead">Lista organizacji i serwisów rekomendowanych przez AISN PTK.</p>
+      </div>
+      <div class="grid grid--3">
+        <div class="card"><h3>Polskie Towarzystwo Kardiologiczne</h3><p>Informacje o towarzystwie i wytycznych postępowania.</p><p><a href="#">Przejdź do strony →</a></p></div>
+        <div class="card"><h3>Asocjacja Interwencji Sercowo-Naczyniowych</h3><p>Sekcja AISN PTK — działalność, publikacje, rejestry.</p><p><a href="#">Przejdź do strony →</a></p></div>
+        <div class="card"><h3>Narodowy Fundusz Zdrowia</h3><p>Informacje o świadczeniach i dostępności leczenia.</p><p><a href="#">Przejdź do strony →</a></p></div>
+      </div>
+      <p style="margin-top:1.2rem"><span class="ph">lista odnośników do uzupełnienia przez AISN PTK</span></p>
+    </div>
+  </section>
+</div>
+
+</main>
+
+<!-- ══════════════════ STOPKA ══════════════════ -->
+<footer class="site-foot">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <h4>Portal edukacyjny</h4>
+        <p style="font-size:.9rem;color:#BCD0D0;max-width:34ch">Serwis prowadzony przez Asocjację Interwencji Sercowo-Naczyniowych Polskiego Towarzystwa Kardiologicznego.</p>
+      </div>
+      <div>
+        <h4>Serwis</h4>
+        <ul>
+          <li><a href="#" data-go="wada">Wada zastawki aortalnej</a></li>
+          <li><a href="#" data-go="leczenie">Leczenie i TAVI</a></li>
+          <li><a href="#" data-go="po-tavi">Życie po TAVI</a></li>
+          <li><a href="#" data-go="osrodki">Ośrodki TAVI</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Informacje</h4>
+        <ul>
+          <li><a href="#" data-go="materialy">Materiały do pobrania</a></li>
+          <li><a href="#">Polityka prywatności</a></li>
+          <li><a href="#">Pliki cookies</a></li>
+          <li><a href="#">Deklaracja dostępności</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Kontakt</h4>
+        <ul>
+          <li>AISN PTK</li>
+          <li><a href="#">kontakt@—</a></li>
+          <li><span style="color:#BCD0D0">dane do uzupełnienia</span></li>
+        </ul>
+      </div>
+    </div>
+    <p class="disclaimer">Informacje zawarte w serwisie mają charakter wyłącznie edukacyjny i nie zastępują konsultacji lekarskiej ani indywidualnej porady medycznej. W przypadku wątpliwości dotyczących zdrowia skontaktuj się z lekarzem. W sytuacji zagrożenia życia dzwoń pod numer 112.</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+  var root = document.documentElement;
+
+  /* ---------- wariant wizualny ---------- */
+  var vA = document.getElementById("var-a"), vB = document.getElementById("var-b");
+  function setVariant(v){
+    if(v === "b"){ root.setAttribute("data-variant","b"); } else { root.removeAttribute("data-variant"); }
+    vA.setAttribute("aria-pressed", String(v !== "b"));
+    vB.setAttribute("aria-pressed", String(v === "b"));
+  }
+  vA.addEventListener("click", function(){ setVariant("a"); });
+  vB.addEventListener("click", function(){ setVariant("b"); });
+
+  /* ---------- wielkość tekstu ---------- */
+  var sizeBtns = document.querySelectorAll("[data-size]");
+  sizeBtns.forEach(function(b){
+    b.addEventListener("click", function(){
+      root.style.setProperty("--uscale", b.dataset.size);
+      sizeBtns.forEach(function(o){ o.setAttribute("aria-pressed", String(o === b)); });
+    });
+  });
+
+  /* ---------- nawigacja między podstronami ---------- */
+  var pages = document.querySelectorAll(".page");
+  var navBtns = document.querySelectorAll(".mainnav button");
+  function go(id){
+    pages.forEach(function(p){ p.hidden = (p.id !== "page-" + id); });
+    navBtns.forEach(function(b){
+      if(b.dataset.go === id){ b.setAttribute("aria-current","page"); } else { b.removeAttribute("aria-current"); }
+    });
+    window.scrollTo({ top: 0, behavior: "auto" });
+  }
+  document.addEventListener("click", function(e){
+    var t = e.target.closest("[data-go]");
+    if(!t) return;
+    e.preventDefault();
+    go(t.dataset.go);
+  });
+
+  /* ---------- wyszukiwarka ośrodków (dane przykładowe) ---------- */
+  var osrodki = [
+    { n:"Narodowy Instytut Kardiologii", m:"Warszawa", w:"mazowieckie", x:378, y:238 },
+    { n:"Uniwersyteckie Centrum Kliniczne WUM", m:"Warszawa", w:"mazowieckie", x:392, y:249 },
+    { n:"Krakowski Szpital Specjalistyczny im. Jana Pawła II", m:"Kraków", w:"małopolskie", x:324, y:434 },
+    { n:"Śląskie Centrum Chorób Serca", m:"Zabrze", w:"śląskie", x:255, y:409 },
+    { n:"Górnośląskie Centrum Medyczne", m:"Katowice", w:"śląskie", x:275, y:418 },
+    { n:"Uniwersytecki Szpital Kliniczny", m:"Wrocław", w:"dolnośląskie", x:165, y:341 },
+    { n:"Szpital Kliniczny Przemienienia Pańskiego", m:"Poznań", w:"wielkopolskie", x:158, y:226 },
+    { n:"Uniwersyteckie Centrum Kliniczne", m:"Gdańsk", w:"pomorskie", x:253, y:60 },
+    { n:"Samodzielny Publiczny Szpital Kliniczny nr 2 PUM", m:"Szczecin", w:"zachodniopomorskie", x:33, y:135 },
+    { n:"Centralny Szpital Kliniczny UM", m:"Łódź", w:"łódzkie", x:298, y:284 },
+    { n:"Samodzielny Publiczny Szpital Kliniczny nr 4", m:"Lublin", w:"lubelskie", x:462, y:329 },
+    { n:"Uniwersytecki Szpital Kliniczny", m:"Białystok", w:"podlaskie", x:494, y:165 },
+    { n:"Kliniczny Szpital Wojewódzki nr 2", m:"Rzeszów", w:"podkarpackie", x:437, y:436 },
+    { n:"Wojewódzki Szpital Zespolony", m:"Kielce", w:"świętokrzyskie", x:362, y:362 },
+    { n:"Szpital Uniwersytecki nr 1", m:"Bydgoszcz", w:"kujawsko-pomorskie", x:217, y:163 },
+    { n:"Wojewódzki Szpital Specjalistyczny", m:"Olsztyn", w:"warmińsko-mazurskie", x:354, y:104 }
+  ];
+
+  var selWoj = document.getElementById("woj"),
+      inpMia = document.getElementById("miasto"),
+      lista  = document.getElementById("lista"),
+      licz   = document.getElementById("licznik"),
+      piny   = document.getElementById("piny");
+
+  var woje = osrodki.map(function(o){ return o.w; })
+                    .filter(function(v,i,a){ return a.indexOf(v) === i; })
+                    .sort(function(a,b){ return a.localeCompare(b,"pl"); });
+  woje.forEach(function(w){
+    var op = document.createElement("option");
+    op.value = w; op.textContent = w.charAt(0).toUpperCase() + w.slice(1);
+    selWoj.appendChild(op);
+  });
+
+  var SVGNS = "http://www.w3.org/2000/svg";
+  osrodki.forEach(function(o, i){
+    var g = document.createElementNS(SVGNS, "g");
+    g.setAttribute("class", "pin");
+    g.dataset.i = i;
+    var c = document.createElementNS(SVGNS, "circle");
+    c.setAttribute("cx", o.x); c.setAttribute("cy", o.y); c.setAttribute("r", 7);
+    var t = document.createElementNS(SVGNS, "title");
+    t.textContent = o.m + " — " + o.n;
+    g.appendChild(c); g.appendChild(t);
+    piny.appendChild(g);
+    o.el = g;
+  });
+
+  function render(){
+    var w = selWoj.value;
+    var q = inpMia.value.trim().toLowerCase();
+    var n = 0;
+    lista.innerHTML = "";
+    osrodki.forEach(function(o){
+      var ok = (!w || o.w === w) && (!q || (o.m + " " + o.n).toLowerCase().indexOf(q) > -1);
+      o.el.classList.toggle("is-dim", !ok);
+      if(!ok) return;
+      n++;
+      var li = document.createElement("li");
+      li.className = "center";
+      li.innerHTML = "<b>" + o.n + "</b>" +
+        "<span>" + o.m + " · woj. " + o.w + "</span>" +
+        "<span>tel. — dane do uzupełnienia</span>" +
+        '<a href="#">Strona ośrodka →</a>';
+      li.addEventListener("mouseenter", function(){ o.el.classList.add("is-active"); li.classList.add("is-active"); });
+      li.addEventListener("mouseleave", function(){ o.el.classList.remove("is-active"); li.classList.remove("is-active"); });
+      lista.appendChild(li);
+    });
+    licz.textContent = n === 0
+      ? "Brak ośrodków spełniających kryteria — zmień województwo lub wyczyść wyszukiwanie."
+      : "Wyświetlane ośrodki: " + n;
+  }
+  selWoj.addEventListener("change", render);
+  inpMia.addEventListener("input", render);
+  render();
+})();
+</script>
+
+</body>
+</html>
